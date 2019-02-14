@@ -25,7 +25,6 @@ public class StudentRepository {
             System.out.println( "Неудалось загрузить класс драйвера" );
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-
         }
         return connection;
     }
