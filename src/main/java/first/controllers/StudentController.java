@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-
 @Controller
 public class StudentController {
     @RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -55,34 +53,8 @@ public class StudentController {
         stud.getConnection();
         System.out.println( "подключились к базе" );
         stud.insert( studentReady );
-        return "<html>\n" +
-                "<head>\n" +
-                "<title>HTML код таблицы, примеры</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "<table border=\"1\">\n" +
-                "<tr>\n" +
-                "<td>\n" + "</td>\n" +
-                "<td>ячейка 2, первый ряд</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td>ячейка 1, второй ряд</td>\n" +
-                "<td>ячейка 2, второй ряд</td>\n" +
-                "</tr>\n" +
-                "</table> \n" +
-                "</body>\n" +
-                "</html>";
+        return name + surname + age + mark + course;
     }
-
-    @RequestMapping(value = "/show", method = RequestMethod.GET)
-    @ResponseBody
-    public String showStud(ArrayList<Student> student) {
-        StudentRepository stude = new StudentRepository();
-        stude.getConnection();
-
-        return stude.show();
-    }
-
 
 //    @RequestMapping(value = "/viewstud", method = RequestMethod.GET)
 //    @ResponseBody
