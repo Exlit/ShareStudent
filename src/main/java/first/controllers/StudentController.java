@@ -3,11 +3,11 @@ package first.controllers;
 import first.model.Student;
 import first.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
@@ -74,6 +74,7 @@ public class StudentController {
                 "</html>";
     }
 
+
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     @ResponseBody
     public String showStud(ArrayList<Student> student) {
@@ -82,6 +83,43 @@ public class StudentController {
 
         return stude.show();
     }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+
+    @ResponseBody
+
+    public String editStud(){
+//        @RequestParam("id")Integer id
+        StudentRepository stude = new StudentRepository();
+        stude.getConnection();
+
+  //      StringBuilder bd = new StringBuilder();
+        return stude.edit(20);
+//        bd.append( "<html>\n" +
+//                "                <head>\n" +
+//                "                <title>Список студентов</title>\n" +
+//
+//                "                </head>\n" +
+//                "                <body>\n" +
+//                " <table border=\"1\">\n" +
+//                "<tr><td> Номер </td>\n" +
+//                "<td> Имя </td>\n" +
+//                "<td> Фамилия </td>\n" +
+//                "<td> Возвраст </td>\n" +
+//                "<td> Оценка </td>\n" +
+//                "<td> Курс </td>\n" +
+//                "</tr>\n" +
+//                "<td>\n" + student.getName() + "</td>\n" +
+//                "<td>\n" + student.getSurname() + "</td>\n" +
+//                "<td>\n" + student.getAge() + "</td>\n" +
+//                "<td>\n" + student.getMark() + "</td>\n" +
+//                "<td>\n" + student.getCourse() + "</td>\n" +
+//                "<td><a href=\"edit/\n" + "\">Редактировать</a>\n" +
+//                // "<td> <p><a href=\"edit>редактировать</a></p>\n" +
+//                "</tr>" ).toString();
+
+}
+
 
 
 //    @RequestMapping(value = "/viewstud", method = RequestMethod.GET)
