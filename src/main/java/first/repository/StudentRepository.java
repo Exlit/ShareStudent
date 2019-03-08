@@ -21,13 +21,12 @@ public class StudentRepository {
         try {
             Class.forName( FULL_DRIVER_NAME );
             System.out.println( "Драйвер подгружен" );
-            connection = DriverManager
-                    .getConnection( URL, LOGIN, PASS );
+            connection = DriverManager.getConnection( URL, LOGIN, PASS );
             System.out.println( "Подключение к базе успешно" );
         } catch (SQLException e) {
             System.out.println( "Неудалось загрузить класс драйвера" );
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
         return connection;
     }
@@ -43,7 +42,7 @@ public class StudentRepository {
             preparedStatement.execute();
             System.out.println( "студент точно в базе" );
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 
@@ -51,18 +50,15 @@ public class StudentRepository {
         LinkedList<Student> list = new LinkedList<Student>();
         StringBuilder bd = new StringBuilder();
         try {
-
-            preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Students" );
+            preparedStatement = connection.prepareStatement("SELECT * FROM Students" );
             ResultSet result2 = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result2.next()) {
                 list.add( new Student(result2.getInt("id"), result2.getString( "name" ), result2.getString( "surname" ), result2.getInt( "age" ), result2.getInt( "mark" ), result2.getInt( "Course" ) ) );
                 System.out.println( "\t Студент: " + result2.getInt( "id" ) + "\t" + result2.getString( "name" ) + "\t" + result2.getString( "surname" ) + "\t" + result2.getInt( "age" ) + "\t" + result2.getInt( "mark" ) + "\t" + result2.getInt( "course" ) );
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
         return list;
     }
@@ -79,15 +75,13 @@ public class StudentRepository {
             preparedStatement.execute();
             System.out.println( "студент обновлен в базе" );
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 
     public Student getStudentById(int id) {
         try {
-            preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Students where id=" + id );
-
+            preparedStatement = connection.prepareStatement("SELECT * FROM Students where id=" + id );
             ResultSet result2 = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result2.next()) {
@@ -96,7 +90,7 @@ public class StudentRepository {
                 return stud;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
         return null;
     }
@@ -109,7 +103,7 @@ public class StudentRepository {
             System.out.println( "Студент под номером " + id + " удален" );
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }
