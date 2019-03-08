@@ -1,6 +1,7 @@
 package first.model;
 
 public class Student {
+    private int id;
     private String name;
     private String surname;
     private int age;
@@ -8,6 +9,15 @@ public class Student {
     private int course;
 
     public Student(String name, String surname, int age, int mark, int course) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.mark = mark;
+        this.course = course;
+    }
+
+    public Student(int id, String name, String surname, int age, int mark, int course) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -53,5 +63,13 @@ public class Student {
 
     public void setCourse(int course) {
         this.course = course;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
