@@ -15,9 +15,7 @@ public class StudentController {
     String getStudentForm() {
         StudAdd studAdd = new StudAdd();
         return studAdd.add();
-
     }
-
     @RequestMapping(value = "/viewstud", method = RequestMethod.GET)
     @ResponseBody
     public String viewstud(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "button") String button) {
@@ -55,10 +53,10 @@ public class StudentController {
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     @ResponseBody
     String updStudentForm(@RequestParam(value = "id") Integer id) {
+
         StudEdit studEdit = new StudEdit();
         return studEdit.edit( id );
     }
-
 
     @RequestMapping(value = "/editdone", method = RequestMethod.GET)
     @ResponseBody

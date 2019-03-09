@@ -62,7 +62,6 @@ public class StudentRepository {
         }
         return list;
     }
-
     public void update(Student student) {
         try {
             preparedStatement = connection.prepareStatement( UPDTABLE );
