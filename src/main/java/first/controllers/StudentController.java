@@ -12,9 +12,7 @@ public class StudentController implements StudentControllerInter{
     String getStudentForm() {
         StudentDto studAdd = new StudentDto();
         return studAdd.add();
-
     }
-
     @RequestMapping(value = "/viewstud", method = RequestMethod.GET)
     @ResponseBody
     public String viewstud(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "button") String button) {
@@ -43,7 +41,6 @@ public class StudentController implements StudentControllerInter{
         StudentDto studEdit = new StudentDto();
         return studEdit.edit( id );
     }
-
 
     @RequestMapping(value = "/editdone", method = RequestMethod.GET)
     @ResponseBody
