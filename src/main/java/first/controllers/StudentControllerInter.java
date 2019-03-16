@@ -1,6 +1,7 @@
 package first.controllers;
 
 public interface StudentControllerInter {
+
     String str = " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +

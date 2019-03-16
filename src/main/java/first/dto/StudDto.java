@@ -79,7 +79,6 @@ public interface StudDto {
             "  </form>\n" +
             " </body>\n" +
             "</html>";
-
     String delForm = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
