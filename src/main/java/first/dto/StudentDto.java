@@ -1,71 +1,59 @@
 package first.dto;
 
-public class StudentDto {
-    private String name;
-    private String surname;
-    private Integer age;
-    private Integer mark;
-    private Integer course;
-    private String button;
+import first.model.Student;
+import first.repository.StudentRepository;
 
-    public String getName() {
-        return name;
+import java.util.List;
+
+public class StudentDto implements StudDto, StudDtoShow{
+    private final StudentRepository rep = new StudentRepository();
+    public String add() {
+        return FORM;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String edit(Integer id) {
+        rep.getConnection();
+        return String.format(editForm, id, rep.getStudentById(id).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse());
+    }
+    public String editDone(String name, String surname, Integer age, Integer mark, Integer course, Integer id, String button) {
+        System.out.println( "Данные зашли" );
+        Student studentRead = new Student( id, name, surname, age, mark, course );
+        System.out.println( "Студент создан" );
+        StudentRepository stud = new StudentRepository();
+        stud.getConnection();
+        System.out.println( "подключились к базе" );
+        stud.update( studentRead );
+
+        return strEdit;
     }
 
-    public String getSurname() {
-        return surname;
+    public String del(Integer id) {
+        rep.getConnection();
+        return String.format(delForm, id, rep.getStudentById(id).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse());
     }
 
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public String delDone(Integer id) {
+        System.out.println( "Данные зашли" );
+        StudentRepository stud = new StudentRepository();
+        stud.getConnection();
+        System.out.println( "подключились к базе" );
+        stud.del( id );
+        return str;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getShow() {
+        rep.getConnection();
+        List<Student> list = rep.show();
+        StringBuilder bd = new StringBuilder();
+        bd.append(showHead);
+        for(
+                int i = 0; i<list.size();i++)
+
+        {
+            bd.append( String.format(showStudList, (i + 1), (i + 1), (i + 1), list.get( (i) ).getId(), (i + 1), (i + 1), (i + 1), list.get( i ).getName(), list.get( i ).getSurname(), list.get( i ).getAge(), list.get( i ).getMark(), list.get( i ).getCourse()));
+        }
+        bd.append( String.format(showEnd, list.size(), list.size()));
+        return bd.toString();
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getMark() {
-        return mark;
-    }
-
-    public void setMark(Integer mark) {
-        this.mark = mark;
-    }
-
-    public Integer getCourse() {
-        return course;
-    }
-
-    public void setCourse(Integer course) {
-        this.course = course;
-    }
-
-    public String getButton() {
-        return button;
-    }
-
-    public void setButton(String button) {
-        this.button = button;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentDto{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", mark=" + mark +
-                ", course=" + course +
-                ", button='" + button + '\'' +
-                '}';
-    }
 }

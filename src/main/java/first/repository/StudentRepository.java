@@ -26,7 +26,7 @@ public class StudentRepository {
         } catch (SQLException e) {
             System.out.println( "Неудалось загрузить класс драйвера" );
         } catch (ClassNotFoundException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
         return connection;
     }
@@ -42,7 +42,7 @@ public class StudentRepository {
             preparedStatement.execute();
             System.out.println( "студент точно в базе" );
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
     }
 
@@ -58,7 +58,7 @@ public class StudentRepository {
                 System.out.println( "\t Студент: " + result2.getInt( "id" ) + "\t" + result2.getString( "name" ) + "\t" + result2.getString( "surname" ) + "\t" + result2.getInt( "age" ) + "\t" + result2.getInt( "mark" ) + "\t" + result2.getInt( "course" ) );
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
         return list;
     }
@@ -75,7 +75,7 @@ public class StudentRepository {
             preparedStatement.execute();
             System.out.println( "студент обновлен в базе" );
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
     }
 
@@ -90,7 +90,7 @@ public class StudentRepository {
                 return stud;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -103,7 +103,7 @@ public class StudentRepository {
             System.out.println( "Студент под номером " + id + " удален" );
 
         } catch (SQLException e) {
-            System.out.println(e);
+            System.err.println(e);
         }
     }
 }

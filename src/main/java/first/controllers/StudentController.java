@@ -1,19 +1,16 @@
 package first.controllers;
 
-import first.dto.StudAdd;
-import first.dto.StudDel;
-import first.dto.StudEdit;
-import first.dto.StudShow;
+import first.dto.*;
 import first.model.Student;
 import first.repository.StudentRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class StudentController {
+public class StudentController implements StudentControllerInter{
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     @ResponseBody
     String getStudentForm() {
-        StudAdd studAdd = new StudAdd();
+        StudentDto studAdd = new StudentDto();
         return studAdd.add();
 
     }
@@ -29,18 +26,6 @@ public class StudentController {
         stud.getConnection();
         System.out.println( "подключились к базе" );
         stud.insert( studentReady );
-        String str = " <head>\n" +
-                " </head>\n" +
-                " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
-                " <body> \n" +
-                " <form action=\"/form\" method=\"get\" >\n" +
-                " <p><input type=\"submit\" name=\"button\" value=\" Добавить студетна \"></p>\n" +
-                "  </form>\n" +
-                " <form action=\"/show\" method=\"get\" >\n" +
-                " <p><input type=\"submit\" name=\"button\" value=\" Посмотреть список \"></p>\n" +
-                "  </form>\n" +
-                " </body>\n" +
-                "</html>";
         return str;
 
     }
@@ -48,14 +33,14 @@ public class StudentController {
 
     @RequestMapping("/show")
     public String greeting() {
-        StudShow show = new StudShow();
+        StudentDto show = new StudentDto();
         return show.getShow();
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     @ResponseBody
     String updStudentForm(@RequestParam(value = "id") Integer id) {
-        StudEdit studEdit = new StudEdit();
+        StudentDto studEdit = new StudentDto();
         return studEdit.edit( id );
     }
 
@@ -63,21 +48,21 @@ public class StudentController {
     @RequestMapping(value = "/editdone", method = RequestMethod.GET)
     @ResponseBody
     public String testRedirect(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "id") Integer id, @RequestParam(value = "button") String button) {
-        StudEdit studEdit = new StudEdit();
+        StudentDto studEdit = new StudentDto();
         return studEdit.editDone( name, surname, age, mark, course, id, button );
     }
 
     @RequestMapping(value = "/del", method = RequestMethod.GET)
     @ResponseBody
     String delStudent(@RequestParam(value = "id") Integer id) {
-        StudDel studDel = new StudDel();
+        StudentDto studDel = new StudentDto();
         return studDel.del( id );
     }
 
     @RequestMapping(value = "/deldone", method = RequestMethod.GET)
     @ResponseBody
     public String delRedirect(@RequestParam(value = "id") Integer id) {
-        StudDel studDel = new StudDel();
+        StudentDto studDel = new StudentDto();
         return studDel.delDone( id );
     }
 }
