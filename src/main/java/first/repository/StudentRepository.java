@@ -16,7 +16,6 @@ public class StudentRepository {
 
     private Connection connection;
     private PreparedStatement preparedStatement;
-
     public Connection getConnection() {
         try {
             Class.forName( FULL_DRIVER_NAME );

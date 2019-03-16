@@ -1,6 +1,7 @@
 package first.dto;
 
 public interface StudDtoShow {
+
     String showHead = "<h1>Hello vas!</h1>" +
             "<table border=\"1\">" +
             "<tr><td></td>" +

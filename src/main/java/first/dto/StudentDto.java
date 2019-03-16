@@ -2,7 +2,6 @@ package first.dto;
 
 import first.model.Student;
 import first.repository.StudentRepository;
-
 import java.util.List;
 
 public class StudentDto implements StudDto, StudDtoShow {

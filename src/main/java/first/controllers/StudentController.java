@@ -13,7 +13,6 @@ public class StudentController implements StudentControllerInter {
         StudentDto studAdd = new StudentDto();
         return studAdd.add();
     }
-
     @RequestMapping(value = "/viewstud", method = RequestMethod.GET)
     @ResponseBody
     public String viewstud(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "button") String button) {
@@ -25,36 +24,30 @@ public class StudentController implements StudentControllerInter {
         System.out.println( "подключились к базе" );
         stud.insert( studentReady );
         return str;
-
     }
-
     @RequestMapping("/show")
     public String greeting() {
         StudentDto show = new StudentDto();
         return show.getShow();
     }
-
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     @ResponseBody
     String updStudentForm(@RequestParam(value = "id") Integer id) {
         StudentDto studEdit = new StudentDto();
         return studEdit.edit( id );
     }
-
     @RequestMapping(value = "/editdone", method = RequestMethod.GET)
     @ResponseBody
     public String testRedirect(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "id") Integer id, @RequestParam(value = "button") String button) {
         StudentDto studEdit = new StudentDto();
         return studEdit.editDone( name, surname, age, mark, course, id, button );
     }
-
     @RequestMapping(value = "/del", method = RequestMethod.GET)
     @ResponseBody
     String delStudent(@RequestParam(value = "id") Integer id) {
         StudentDto studDel = new StudentDto();
         return studDel.del( id );
     }
-
     @RequestMapping(value = "/deldone", method = RequestMethod.GET)
     @ResponseBody
     public String delRedirect(@RequestParam(value = "id") Integer id) {

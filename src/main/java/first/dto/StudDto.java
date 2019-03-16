@@ -1,6 +1,7 @@
 package first.dto;
 
 public interface StudDto {
+
     String FORM = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
@@ -79,6 +80,7 @@ public interface StudDto {
             "  </form>\n" +
             " </body>\n" +
             "</html>";
+
     String delForm = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
