@@ -23,7 +23,7 @@ public class StudentRepository {
             connection = DriverManager.getConnection( URL, LOGIN, PASS );
             System.out.println( "Подключение к базе успешно" );
         } catch (SQLException e) {
-            System.out.println( "Неудалось загрузить класс драйвера" );
+            System.err.println(e);
         } catch (ClassNotFoundException e) {
             System.err.println(e);
         }
@@ -46,20 +46,19 @@ public class StudentRepository {
     }
 
     public List<Student> show() {
-        LinkedList<Student> list = new LinkedList<Student>();
-        StringBuilder bd = new StringBuilder();
+        LinkedList<Student> StudentList = new LinkedList<Student>();
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM Students" );
-            ResultSet result2 = preparedStatement.executeQuery();
+            ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
-            while (result2.next()) {
-                list.add( new Student(result2.getInt("id"), result2.getString( "name" ), result2.getString( "surname" ), result2.getInt( "age" ), result2.getInt( "mark" ), result2.getInt( "Course" ) ) );
-                System.out.println( "\t Студент: " + result2.getInt( "id" ) + "\t" + result2.getString( "name" ) + "\t" + result2.getString( "surname" ) + "\t" + result2.getInt( "age" ) + "\t" + result2.getInt( "mark" ) + "\t" + result2.getInt( "course" ) );
+            while (result.next()) {
+                StudentList.add( new Student(result.getInt("id"), result.getString( "name" ), result.getString( "surname" ), result.getInt( "age" ), result.getInt( "mark" ), result.getInt( "Course" ) ) );
+                System.out.println( "\t Студент: " + result.getInt( "id" ) + "\t" + result.getString( "name" ) + "\t" + result.getString( "surname" ) + "\t" + result.getInt( "age" ) + "\t" + result.getInt( "mark" ) + "\t" + result.getInt( "course" ) );
             }
         } catch (SQLException e) {
             System.err.println(e);
         }
-        return list;
+        return StudentList;
     }
     public void update(Student student) {
         try {
@@ -80,11 +79,11 @@ public class StudentRepository {
     public Student getStudentById(int id) {
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM Students where id=" + id );
-            ResultSet result2 = preparedStatement.executeQuery();
+            ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
-            while (result2.next()) {
-                Student stud = new Student( result2.getInt( "id" ), result2.getString( "name" ), result2.getString( "surname" ), result2.getInt( "age" ), result2.getInt( "mark" ), result2.getInt( "Course" ) );
-                System.out.println( "\t Студент: " + result2.getInt( "id" ) + "\t" + result2.getString( "name" ) + "\t" + result2.getString( "surname" ) + "\t" + result2.getInt( "age" ) + "\t" + result2.getInt( "mark" ) + "\t" + result2.getInt( "course" ) );
+            while (result.next()) {
+                Student stud = new Student( result.getInt( "id" ), result.getString( "name" ), result.getString( "surname" ), result.getInt( "age" ), result.getInt( "mark" ), result.getInt( "Course" ) );
+                System.out.println( "\t Студент: " + result.getInt( "id" ) + "\t" + result.getString( "name" ) + "\t" + result.getString( "surname" ) + "\t" + result.getInt( "age" ) + "\t" + result.getInt( "mark" ) + "\t" + result.getInt( "course" ) );
                 return stud;
             }
         } catch (SQLException e) {

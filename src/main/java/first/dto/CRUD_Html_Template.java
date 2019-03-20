@@ -1,8 +1,8 @@
 package first.dto;
 
-public interface StudDto {
+public interface CRUD_Html_Template {
 
-    String FORM = "<html>\n" +
+    String addForm = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
@@ -24,32 +24,6 @@ public interface StudDto {
             "   <input type=\"number\" name=\"course\" size=\"1\">\n" +
             "  </p>\n" +
             "   <p><input type=\"submit\" name=\"button\" value=\" Добавить \"></p>\n" +
-            "  </form>\n" +
-            " </body>\n" +
-            "</html>";
-
-    String str = " <head>\n" +
-            " </head>\n" +
-            " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
-            " <body> \n" +
-            " <form action=\"/form\" method=\"get\" >\n" +
-            " <p><input type=\"submit\" name=\"button\" value=\" Добавить студента \"></p>\n" +
-            "  </form>\n" +
-            " <form action=\"/show\" method=\"get\" >\n" +
-            " <p><input type=\"submit\" name=\"button\" value=\" Посмотреть список \"></p>\n" +
-            "  </form>\n" +
-            " </body>\n" +
-            "</html>";
-
-    String strEdit = " <head>\n" +
-            " </head>\n" +
-            " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
-            " <body> \n" +
-            " <form action=\"/form\" method=\"get\" >\n" +
-            " <p><input type=\"submit\" name=\"button\" value=\" Добавить студента \"></p>\n" +
-            "  </form>\n" +
-            " <form action=\"/show\" method=\"get\" >\n" +
-            " <p><input type=\"submit\" name=\"button\" value=\" Посмотреть список \"></p>\n" +
             "  </form>\n" +
             " </body>\n" +
             "</html>";
