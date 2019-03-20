@@ -27,6 +27,7 @@ public class Student {
         this.mark = mark;
         this.course = course;
     }
+
     public String getName() {
         return name;
     }
