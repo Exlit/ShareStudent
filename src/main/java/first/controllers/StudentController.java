@@ -26,7 +26,7 @@ public class StudentController implements BaseHtmlTemplate {
         System.out.println( "Студент создан" );
         studentRepository.getConnection();
         System.out.println( "подключились к базе" );
-        studentRepository.insert(createStudent);
+        studentRepository.insert( createStudent );
         return MAIN;
     }
 

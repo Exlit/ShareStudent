@@ -1,7 +1,6 @@
 package first.dto;
 
 public interface CRUDHtmlTemplate {
-
     String ADDFORM = "<html>\n" +
             " <head>\n" +
             " </head>\n" +

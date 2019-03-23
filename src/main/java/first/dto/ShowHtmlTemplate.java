@@ -2,7 +2,7 @@ package first.dto;
 
 public interface ShowHtmlTemplate {
 
-    String showHead = "<h1>Hello vas!</h1>" +
+    String SHOWHEAD = "<h1>Hello vas!</h1>" +
             "<table border=\"1\">" +
             "<tr><td></td>" +
             "<td>id</td>" +

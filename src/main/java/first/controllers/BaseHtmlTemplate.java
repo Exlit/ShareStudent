@@ -14,5 +14,4 @@ public interface BaseHtmlTemplate {
             "  </form>\n" +
             " </body>\n" +
             "</html>";
-
 }

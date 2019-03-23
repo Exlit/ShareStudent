@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepository {
+    public static final String DELSTUDENT = "delete from Students WHERE id =?";
     private static final String FULL_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/feedback";
     private static final String LOGIN = "root";
@@ -15,8 +16,6 @@ public class StudentRepository {
     private static final String UPDTABLE = "update students set name=?, surname=?, age=?, mark=?, course=? WHERE id =?";
     private static final String FINDSTUDENT = "SELECT * FROM Students where id=?";
     private static final String SHOWSTUDENTS = "SELECT * FROM Students";
-    public static final String DELSTUDENT =  "delete from Students WHERE id =?";
-
     private Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -52,7 +51,7 @@ public class StudentRepository {
     public List<Student> show() {
         List<Student> studentList = new ArrayList<Student>();
         try {
-            preparedStatement = connection.prepareStatement(SHOWSTUDENTS);
+            preparedStatement = connection.prepareStatement( SHOWSTUDENTS );
             ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result.next()) {
@@ -83,8 +82,8 @@ public class StudentRepository {
 
     public Student getStudentById(int id) {
         try {
-            preparedStatement = connection.prepareStatement(FINDSTUDENT);
-            preparedStatement.setInt(1, id);
+            preparedStatement = connection.prepareStatement( FINDSTUDENT );
+            preparedStatement.setInt( 1, id );
             ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result.next()) {
@@ -100,9 +99,9 @@ public class StudentRepository {
 
     public void del(int id) {
         try {
-            preparedStatement = connection.prepareStatement(DELSTUDENT);
-            preparedStatement.setInt(1, id);
-            preparedStatement.execute(DELSTUDENT);
+            preparedStatement = connection.prepareStatement( DELSTUDENT );
+            preparedStatement.setInt( 1, id );
+            preparedStatement.execute( DELSTUDENT );
             System.out.println( "Студент под номером " + id + " удален" );
 
         } catch (SQLException e) {

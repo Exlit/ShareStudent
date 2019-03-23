@@ -1,5 +1,4 @@
 package first.model;
-
 import lombok.Getter;
 
 @Getter

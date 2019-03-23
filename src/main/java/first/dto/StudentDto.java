@@ -47,7 +47,7 @@ public class StudentDto implements CRUDHtmlTemplate, ShowHtmlTemplate {
         rep.getConnection();
         List<Student> list = rep.show();
         StringBuilder sb = new StringBuilder();
-        sb.append( showHead );
+        sb.append(SHOWHEAD);
         for (
                 int i = 0; i < list.size(); i++) {
             sb.append( String.format( showStudList, (i + 1), (i + 1), (i + 1), list.get( (i) ).getId(), (i + 1), (i + 1), (i + 1), list.get( i ).getName(), list.get( i ).getSurname(), list.get( i ).getAge(), list.get( i ).getMark(), list.get( i ).getCourse() ) );
