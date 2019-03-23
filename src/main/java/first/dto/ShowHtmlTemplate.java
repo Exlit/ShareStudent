@@ -46,7 +46,7 @@ public interface ShowHtmlTemplate {
             "document.getElementById(\"del\").addEventListener(\"click\", function(){\n" +
             "var resultd;\n" +
             "var numResultd;\n" +
-            "for (var i = 1; i < %d; i++) {\n" +
+            "for (var i = 1; i <= %d; i++) {\n" +
             "            var checkBox = document.getElementById(i);\n" +
             "            if (checkBox.checked == true){\n" +
             "                console.log(\"Checkbox was selected\");\n" +

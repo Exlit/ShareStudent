@@ -2,7 +2,7 @@ package first.controllers;
 
 public interface BaseHtmlTemplate {
 
-    public String main = " <head>\n" +
+    String MAIN = " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
             " <body> \n" +

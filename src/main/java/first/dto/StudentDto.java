@@ -6,33 +6,33 @@ import first.repository.StudentRepository;
 
 import java.util.List;
 
-public class StudentDto implements CRUD_Html_Template, ShowHtmlTemplate {
+public class StudentDto implements CRUDHtmlTemplate, ShowHtmlTemplate {
     private final StudentRepository rep = new StudentRepository();
 
 
     public String add() {
-        return addForm;
+        return ADDFORM;
     }
 
     public String editForm(Integer id) {
         rep.getConnection();
-        return String.format( editForm, id, rep.getStudentById( id ).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse() );
+        return String.format( EDITFORM, id, rep.getStudentById( id ).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse() );
     }
 
     public String editStudent(String name, String surname, Integer age, Integer mark, Integer course, Integer id, String button) {
         System.out.println( "Данные зашли" );
-        Student studentRead = new Student( id, name, surname, age, mark, course );
+        Student student = new Student( id, name, surname, age, mark, course );
         System.out.println( "Студент создан" );
 
         rep.getConnection();
         System.out.println( "подключились к базе" );
-        rep.update( studentRead );
-        return BaseHtmlTemplate.main;
+        rep.update( student );
+        return BaseHtmlTemplate.MAIN;
     }
 
     public String delForm(Integer id) {
         rep.getConnection();
-        return String.format( delForm, id, rep.getStudentById( id ).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse() );
+        return String.format( DELFORM, id, rep.getStudentById( id ).getName(), rep.getStudentById( id ).getSurname(), rep.getStudentById( id ).getAge(), rep.getStudentById( id ).getMark(), rep.getStudentById( id ).getCourse() );
     }
 
     public String delStudentById(Integer id) {
@@ -40,7 +40,7 @@ public class StudentDto implements CRUD_Html_Template, ShowHtmlTemplate {
         rep.getConnection();
         System.out.println( "подключились к базе" );
         rep.del( id );
-        return BaseHtmlTemplate.main;
+        return BaseHtmlTemplate.MAIN;
     }
 
     public String getShow() {

@@ -1,8 +1,8 @@
 package first.dto;
 
-public interface CRUD_Html_Template {
+public interface CRUDHtmlTemplate {
 
-    String addForm = "<html>\n" +
+    String ADDFORM = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
@@ -28,7 +28,7 @@ public interface CRUD_Html_Template {
             " </body>\n" +
             "</html>";
 
-    String editForm = "<html>\n" +
+    String EDITFORM = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
@@ -55,7 +55,7 @@ public interface CRUD_Html_Template {
             " </body>\n" +
             "</html>";
 
-    String delForm = "<html>\n" +
+    String DELFORM = "<html>\n" +
             " <head>\n" +
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +

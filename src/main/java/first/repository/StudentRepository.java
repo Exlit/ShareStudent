@@ -3,7 +3,7 @@ package first.repository;
 import first.model.Student;
 
 import java.sql.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepository {
@@ -13,6 +13,9 @@ public class StudentRepository {
     private static final String PASS = "NGhiphop020188!";
     private static final String TABLE = "insert into students values (default, ?, ?, ?, ?, ?)";
     private static final String UPDTABLE = "update students set name=?, surname=?, age=?, mark=?, course=? WHERE id =?";
+    private static final String FINDSTUDENT = "SELECT * FROM Students where id=?";
+    private static final String SHOWSTUDENTS = "SELECT * FROM Students";
+    public static final String DELSTUDENT =  "delete from Students WHERE id =?";
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -47,19 +50,19 @@ public class StudentRepository {
     }
 
     public List<Student> show() {
-        LinkedList<Student> StudentList = new LinkedList<Student>();
+        List<Student> studentList = new ArrayList<Student>();
         try {
-            preparedStatement = connection.prepareStatement( "SELECT * FROM Students" );
+            preparedStatement = connection.prepareStatement(SHOWSTUDENTS);
             ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result.next()) {
-                StudentList.add( new Student( result.getInt( "id" ), result.getString( "name" ), result.getString( "surname" ), result.getInt( "age" ), result.getInt( "mark" ), result.getInt( "Course" ) ) );
+                studentList.add( new Student( result.getInt( "id" ), result.getString( "name" ), result.getString( "surname" ), result.getInt( "age" ), result.getInt( "mark" ), result.getInt( "Course" ) ) );
                 System.out.println( "\t Студент: " + result.getInt( "id" ) + "\t" + result.getString( "name" ) + "\t" + result.getString( "surname" ) + "\t" + result.getInt( "age" ) + "\t" + result.getInt( "mark" ) + "\t" + result.getInt( "course" ) );
             }
         } catch (SQLException e) {
             System.err.println( e );
         }
-        return StudentList;
+        return studentList;
     }
 
     public void update(Student student) {
@@ -80,7 +83,8 @@ public class StudentRepository {
 
     public Student getStudentById(int id) {
         try {
-            preparedStatement = connection.prepareStatement( "SELECT * FROM Students where id=" + id );
+            preparedStatement = connection.prepareStatement(FINDSTUDENT);
+            preparedStatement.setInt(1, id);
             ResultSet result = preparedStatement.executeQuery();
             System.out.println( "Выводим PreparedStatement" );
             while (result.next()) {
@@ -96,9 +100,9 @@ public class StudentRepository {
 
     public void del(int id) {
         try {
-            String DEL = "delete from Students WHERE id =" + id;
-            preparedStatement = connection.prepareStatement( DEL );
-            preparedStatement.execute( DEL );
+            preparedStatement = connection.prepareStatement(DELSTUDENT);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute(DELSTUDENT);
             System.out.println( "Студент под номером " + id + " удален" );
 
         } catch (SQLException e) {

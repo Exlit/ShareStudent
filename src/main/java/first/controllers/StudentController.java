@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class StudentController implements BaseHtmlTemplate {
     StudentRepository studentRepository = new StudentRepository();
-    Student student;
+    Student createStudent;
     StudentDto dto = new StudentDto();
 
     @RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -22,12 +22,12 @@ public class StudentController implements BaseHtmlTemplate {
     @ResponseBody
     public String viewstud(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "age") Integer age, @RequestParam(value = "mark") Integer mark, @RequestParam(value = "course") Integer course, @RequestParam(value = "button") String button) {
         System.out.println( "Данные зашли" );
-        student = new Student( name, surname, age, mark, course );
+        createStudent = new Student( name, surname, age, mark, course );
         System.out.println( "Студент создан" );
         studentRepository.getConnection();
         System.out.println( "подключились к базе" );
-        studentRepository.insert( student );
-        return main;
+        studentRepository.insert(createStudent);
+        return MAIN;
     }
 
     @RequestMapping("/show")
