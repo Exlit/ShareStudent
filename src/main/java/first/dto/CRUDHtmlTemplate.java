@@ -6,7 +6,7 @@ public interface CRUDHtmlTemplate {
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
             " <body> \n" +
-            " <form action=\"/viewstud\" method=\"get\" >\n" +
+            " <form action=\"/addDone\" method=\"get\" >\n" +
             "  <p>Имя:<br>\n" +
             "   <input type=\"text\" name=\"name\" size=\"40\">\n" +
             "  </p>\n" +
@@ -32,7 +32,7 @@ public interface CRUDHtmlTemplate {
             " </head>\n" +
             " <meta http-equiv=\"Content-Type\"  content=\"text/html; charset=utf-8\">\n" +
             " <body> \n" +
-            " <form action=\"/editdone\" method=\"get\" >\n" +
+            " <form action=\"/addDone\" method=\"get\" >\n" +
             "   <input type=\"text\" name=\"id\" size=\"40\" value=\" %d \"readonly>\n" +
             "  <p>Имя:<br>\n" +
             "   <input type=\"text\" name=\"name\" size=\"40\" value=\"%s\">\n" +
