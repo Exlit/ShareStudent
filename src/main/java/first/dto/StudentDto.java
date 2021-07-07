@@ -1,71 +1,34 @@
 package first.dto;
 
-public class StudentDto {
-    private String name;
-    private String surname;
-    private Integer age;
-    private Integer mark;
-    private Integer course;
-    private String button;
+import first.model.Student;
+import first.repository.UserRepository;
 
-    public String getName() {
-        return name;
+import java.util.List;
+import java.util.Optional;
+
+public class StudentDto implements CRUDHtmlTemplate, ShowHtmlTemplate {
+    private UserRepository rep;
+    private Student student;
+
+    public String add() {
+
+        return ADDFORM;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getShow(Iterable<Student> findAll) {
+        List<Student> list = (List) findAll;
+        StringBuilder sb = new StringBuilder();
+        sb.append(SHOWHEAD);
+        for (
+                int i = 0; i < list.size(); i++) {
+            sb.append( String.format( showStudList, (i + 1), (i + 1), (i + 1), list.get((i)).getId(), (i + 1), (i + 1), (i + 1), list.get( i ).getName(), list.get( i ).getSurname(), list.get( i ).getAge(), list.get( i ).getMark(), list.get( i ).getCourse() ) );
+        }
+        sb.append( String.format( showEnd, list.size(), list.size() ) );
+        return sb.toString();
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getMark() {
-        return mark;
-    }
-
-    public void setMark(Integer mark) {
-        this.mark = mark;
-    }
-
-    public Integer getCourse() {
-        return course;
-    }
-
-    public void setCourse(Integer course) {
-        this.course = course;
-    }
-
-    public String getButton() {
-        return button;
-    }
-
-    public void setButton(String button) {
-        this.button = button;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentDto{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", mark=" + mark +
-                ", course=" + course +
-                ", button='" + button + '\'' +
-                '}';
+    public String editForm(Optional<Student> findById) {
+        Student stud = findById.orElse(new Student());
+        return String.format( EDITFORM, stud.getId(), stud.getName(), stud.getSurname(), stud.getAge(), stud.getMark(), stud.getCourse());
     }
 }
